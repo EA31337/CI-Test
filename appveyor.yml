@@ -1,0 +1,10 @@
+install:
+- curl -sLo metaeditor.exe https://github.com/EA31337/FX-MT-VM/releases/download/4.x/metaeditor.exe
+before_test:
+- echo %cd%
+- #ps: chcp 1200
+test_script:
+- ps: ./metaeditor.exe /s /log:CON /compile:.
+- forfiles /m *.mqh /c "metaeditor.exe /s /log:CON /compile:@file & echo @file ok."
+build: off
+platform: x86
